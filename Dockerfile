@@ -29,6 +29,7 @@ RUN \
     git checkout PRrelaxdev
 
 COPY tls_log/ /retina/examples/tls_log/
+COPY tls_log_netflix/ /retina/examples/tls_log_netflix/
 COPY video/ /retina/examples/video/
 
 WORKDIR /retina
@@ -38,7 +39,7 @@ RUN \
     export LD_LIBRARY_PATH=$DPDK_PATH/lib/x86_64-linux-gnu &&\
     export PKG_CONFIG_PATH=$LD_LIBRARY_PATH/pkgconfig &&\
     sed -i '/default = \["mlx5"\]/d' core/Cargo.toml &&\
-    sed -i 's#"examples/basic",#"examples/basic","examples/tls_log","examples/video",#' Cargo.toml &&\
+    sed -i 's#"examples/basic",#"examples/basic","examples/tls_log", "example/tls_log_netflix", "examples/video",#' Cargo.toml &&\
     cargo build --release
 
 WORKDIR /retina
