@@ -10,7 +10,14 @@ else
         echo "Interface : $1"
         echo "Application : $2"
 fi
+inf=$1
+app=$2
 
-sed -i "s#iface=[a-zA-Z0-9]\+#iface=$1#" /retina/configs/online-vdev.toml
+sed -i "s#iface=[a-zA-Z0-9]\+#iface=${inf}#" /retina/configs/online-vdev.toml
 
-env LD_LIBRARY_PATH=$LD_LIBRARY_PATH RUST_LOG=info ./target/release/$2 -c /retina/configs/online-vdev.toml
+shift 2
+
+env LD_LIBRARY_PATH=$LD_LIBRARY_PATH RUST_LOG=info ./target/release/$app -c /retina/configs/online-vdev.toml $@
+if stat -t "*.log" &> /dev/null ; then
+    cat *.log
+fi
