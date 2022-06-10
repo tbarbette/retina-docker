@@ -25,7 +25,7 @@ RUN   \
 WORKDIR /
 
 RUN \
-    git clone http://github.com/stanford-esrg/retina.git && cd retina &&\
+    git clone http://github.com/stanford-esrg/retina.git &&\
     git checkout PRrelaxdev
 
 COPY tls_log/ /retina/examples/tls_log/

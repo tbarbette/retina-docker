@@ -8,7 +8,7 @@ RUN  \
     apt-get update &&\
     apt-get install -y build-essential meson pkg-config libnuma-dev python3-pyelftools libpcap-dev libclang-dev python3-pip git
 
-RUN mkdir /dpdk
+RUN mkdir /dpdkk
 
 WORKDIR /dpdk
 
@@ -25,7 +25,7 @@ RUN   \
 WORKDIR /
 
 RUN \
-    git clone http://github.com/stanford-esrg/retina.git && cd retina &&\
+    git clone http://github.com/stanford-esrg/retina.git
     git checkout PRrelaxdev
 
 COPY tls_log/ /retina/examples/tls_log/
