@@ -20,6 +20,8 @@ RUN   \
     meson --prefix=/dpdk -D disable_drivers=net/mlx4 -D disable_drivers=net/mlx5 -Dcpu_instruction_set=generic build &&\
     cd build &&\
     ninja install &&\
+    ninja clean &&\
+    cd .. && rm dpdk-21.08.tar.xz &&\
     ldconfig
 
 
