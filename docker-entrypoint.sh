@@ -18,6 +18,6 @@ sed -i "s#iface=[a-zA-Z0-9]\+#iface=${inf}#" /retina/configs/online-vdev.toml
 shift 2
 
 env LD_LIBRARY_PATH=$LD_LIBRARY_PATH RUST_LOG=info ./target/release/$app -c /retina/configs/online-vdev.toml $@
-if stat -t "*.log" &> /dev/null ; then
-    cat *.log
+if stat -t "*.jsonl" &> /dev/null ; then
+    cat *.jsonl
 fi
