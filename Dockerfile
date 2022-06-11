@@ -40,7 +40,8 @@ RUN \
     export PKG_CONFIG_PATH=$LD_LIBRARY_PATH/pkgconfig &&\
     sed -i '/default = \["mlx5"\]/d' core/Cargo.toml &&\
     sed -i 's#"examples/basic",#"examples/basic","examples/print_tls",#' Cargo.toml &&\
-    cargo build --release
+    cargo build --release &&\
+    rm -rf target/release/deps && rm -rf target/release/build && rm -rf target/release/incremental
 
 WORKDIR /retina
 
