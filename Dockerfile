@@ -28,6 +28,8 @@ WORKDIR /
 RUN \
     git clone http://github.com/stanford-esrg/retina.git && cd retina
 
+COPY print_tls/ /retina/examples/print_tls/
+
 WORKDIR /retina
 
 RUN \
@@ -35,6 +37,7 @@ RUN \
     export LD_LIBRARY_PATH=$DPDK_PATH/lib/x86_64-linux-gnu &&\
     export PKG_CONFIG_PATH=$LD_LIBRARY_PATH/pkgconfig &&\
     sed -i '/default = \["mlx5"\]/d' core/Cargo.toml &&\
+    sed -i 's#"examples/basic",#"examples/basic","examples/print_tls",#' Cargo.toml &&\
     cargo build --release
 
 WORKDIR /retina
